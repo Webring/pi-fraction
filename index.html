@@ -19,13 +19,13 @@
                 Результат: <content id="ang1">180</content> (<content id="ang2">-180</content>)°
             </div>
             <div class="input-group mb-1">
-                  <input type="number" class="form-control" placeholder="Числитель дроби" value="1" id="up" onkeyup="calc()" onchange="calc()">
+                  <input type="number" class="form-control" placeholder="Числитель дроби" id="up" onkeyup="calc()" onchange="calc()">
                   <div class="input-group-append">
                     <span class="input-group-text">π</span>
                   </div>
             </div>
             <div class="input-group mb-3">
-                  <input type="number" class="form-control" placeholder="Знаменатель дроби" value="1" id="down" onkeyup="calc()" onchange="calc()">
+                  <input type="number" class="form-control" placeholder="Знаменатель дроби" id="down" onkeyup="calc()" onchange="calc()">
             </div>
 
         </th>
@@ -111,7 +111,7 @@ function calc(){
     }
 
 }
-draw(180);
+draw(1/0);
 </script>
 </body>
 </html>
