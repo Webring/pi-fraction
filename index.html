@@ -2,22 +2,19 @@
 <html>
 <head>
     <title>Convertor2.0</title>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">s
 </head>
 <body style="width: 100%; margin: 0%; display:flex; justify-content: center;">
 <table>
     <tr>
         <th>
-            <canvas id="canvas" width="500" height="500" style="border:1px solid black;">
+            <canvas id="canvas" width="500" height="500">
                 Этот элемент не поддерживается.
             </canvas>
         </th>
     </tr>
     <tr>
         <th>
-            Результат:<content id="ang1">180</content>(<content id="ang2">-180</content>)°
+            Результат: <content id="ang1">180</content> (<content id="ang2">-180</content>)°
             <div><input type="number" value="1" id="up" onkeyup="calc()" onchange="calc()"></div>
             <div><input type="number" value="1" id="down" onkeyup="calc()" onchange="calc()"></div>
         </th>
@@ -28,18 +25,39 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 function degToRad (deg) { return deg / 180 * Math.PI; }
-function draw(angle){
 
+function draw(angle){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	ctx.beginPath();
-	ctx.moveTo(250,0);
-	ctx.lineTo(250, 500);
-	ctx.closePath();
+	ctx.moveTo(250,500);
+	ctx.lineTo(250, 0);
+	ctx.stroke();
+	ctx.lineTo(245, 5);
+	ctx.lineTo(255, 5);
+	ctx.lineTo(250, 0);
+	ctx.fillStyle = "black";
+	ctx.fill();
+	ctx.stroke();
 
+
+    ctx.beginPath();
 	ctx.moveTo(0,250);
 	ctx.lineTo(500, 250);
+	ctx.stroke();
+	ctx.lineTo(495, 245);
+	ctx.lineTo(495, 255);
+	ctx.lineTo(500, 250);
+	ctx.fillStyle = "black";
+	ctx.fill();
+    ctx.stroke();
 	ctx.closePath();
+
+	ctx.font = "15px Arial";
+	ctx.strokeText("y",235,10);
+	ctx.strokeText("x",490,266);
+	ctx.strokeText("0",455,245);
+
 
 	ctx.moveTo(250,250);
 	ctx.arc(250,250,200,0,Math.PI*2,true);
@@ -63,23 +81,18 @@ function draw(angle){
 	ctx.stroke();}
 
 function calc(){
-x=Number(document.getElementById('up').value);
-y= Number(document.getElementById('down').value);
-angle = ((180/y) * x) % 360
-document.getElementById('ang1').innerHTML = angle;
-if (angle >= 0){
-draw(angle);
-document.getElementById('ang2').innerHTML = angle - 360;
+    x = Number(document.getElementById('up').value);
+    y = Number(document.getElementById('down').value);
+    angle = ((180 / y) * x) % 360
+    document.getElementById('ang1').innerHTML = angle;
+    if (angle >= 0){
+        draw(angle);
+        document.getElementById('ang2').innerHTML = angle - 360;}
+    else{
+        draw(360 + angle);
+        document.getElementById('ang2').innerHTML = angle + 360;}
 }
-else{
-draw(360 + angle);
-document.getElementById('ang2').innerHTML = angle + 360;}
-
-}
-
 draw(180);
-
-
 </script>
 </body>
 </html>
