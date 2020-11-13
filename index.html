@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 <head>
-    <title>Convertor2.0</title>
+    <title>PI fraction 2.0</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body style="width: 100%; margin: 0%; display:flex; justify-content: center;">
+<body style="width: 100%; margin: 0%; display:flex; justify-content: center; margin-top: 5px;">
 <table>
     <tr>
         <th>
@@ -14,9 +15,19 @@
     </tr>
     <tr>
         <th>
-            Результат: <content id="ang1">180</content> (<content id="ang2">-180</content>)°
-            <div><input type="number" value="1" id="up" onkeyup="calc()" onchange="calc()"></div>
-            <div><input type="number" value="1" id="down" onkeyup="calc()" onchange="calc()"></div>
+            <div class="mb-1" style="text-align: center; font-size: 30px;">
+                Результат: <content id="ang1">180</content> (<content id="ang2">-180</content>)°
+            </div>
+            <div class="input-group mb-1">
+                  <input type="number" class="form-control" placeholder="Числитель дроби" value="1" id="up" onkeyup="calc()" onchange="calc()">
+                  <div class="input-group-append">
+                    <span class="input-group-text">π</span>
+                  </div>
+            </div>
+            <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Знаменатель дроби" value="1" id="down" onkeyup="calc()" onchange="calc()">
+            </div>
+
         </th>
     </tr>
 </table>
