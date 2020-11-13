@@ -3,7 +3,7 @@
 <head>
     <title>Convertor2.0</title>
 </head>
-<body>
+<body style="width: 100%; margin: 0%; display:flex; justify-content: center;">
 <table>
     <tr>
         <th>
@@ -22,12 +22,13 @@
 </table>
 <script>
 var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
+var ctx = canvas.getContext("2d");
+
 function degToRad (deg) { return deg / 180 * Math.PI; }
 function draw(angle){
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+	
 	ctx.beginPath();
 	ctx.moveTo(250,0);
 	ctx.lineTo(250, 500);
@@ -69,8 +70,8 @@ document.getElementById('ang2').innerHTML = angle - 360;
 }
 else{
 draw(360 + angle);
-document.getElementById('ang2').innerHTML = angle + 360;
-}
+document.getElementById('ang2').innerHTML = angle + 360;}
+
 }
 
 draw(180);
