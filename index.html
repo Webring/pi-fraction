@@ -7,7 +7,7 @@
 <body style="width: 100%; margin: 0%; display:flex; justify-content: center; margin-top: 5px;">
 <table>
     <tr>
-        <th>
+        <th style="display: flex; justify-content: center;">
             <canvas id="canvas" width="500" height="500">
                 Этот элемент не поддерживается.
             </canvas>
@@ -94,6 +94,7 @@ function draw(angle){
 function calc(){
     x = Number(document.getElementById('up').value);
     y = Number(document.getElementById('down').value);
+    if (y != 0){
     angle = ((180 / y) * x) % 360
     document.getElementById('ang1').innerHTML = angle;
     if (angle >= 0){
@@ -102,6 +103,13 @@ function calc(){
     else{
         draw(360 + angle);
         document.getElementById('ang2').innerHTML = angle + 360;}
+    }
+    else{
+        document.getElementById('ang1').innerHTML = "-";
+        document.getElementById('ang2').innerHTML = "-";
+        draw(1/0);
+    }
+
 }
 draw(180);
 </script>
