@@ -16,102 +16,123 @@
     <tr>
         <th>
             <div class="mb-1" style="text-align: center; font-size: 30px;">
-                Результат: <content id="ang1">-</content> (<content id="ang2">-</content>)°
+                Угол:
+                <content id="ang1">-</content>
+                (<content id="ang2">-</content>)°
+            </div>
+            <div class="mb-1" style="text-align: center; font-size: 30px;">
+                Координаты: (<content id="x-cord">-</content>; <content id="y-cord">-</content>)
             </div>
             <div class="input-group mb-1">
-                  <input type="number" class="form-control" placeholder="Числитель дроби" id="up" onkeyup="calc()" onchange="calc()">
-                  <div class="input-group-append">
+                <input type="number" class="form-control" placeholder="Числитель дроби" id="up" onkeyup="main()"
+                       onchange="main()">
+                <div class="input-group-append">
                     <span class="input-group-text">π</span>
-                  </div>
+                </div>
             </div>
             <div class="input-group mb-3">
-                  <input type="number" class="form-control" placeholder="Знаменатель дроби" id="down" onkeyup="calc()" onchange="calc()">
+                <input type="number" class="form-control" placeholder="Знаменатель дроби" id="down" onkeyup="main()"
+                       onchange="main()">
             </div>
 
         </th>
     </tr>
 </table>
 <script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
 
-function degToRad (deg) { return deg / 180 * Math.PI; }
-
-function draw(angle){
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	ctx.beginPath();
-	ctx.moveTo(250,500);
-	ctx.lineTo(250, 0);
-	ctx.stroke();
-	ctx.lineTo(245, 5);
-	ctx.lineTo(255, 5);
-	ctx.lineTo(250, 0);
-	ctx.fillStyle = "black";
-	ctx.fill();
-	ctx.stroke();
-
-
-    ctx.beginPath();
-	ctx.moveTo(0,250);
-	ctx.lineTo(500, 250);
-	ctx.stroke();
-	ctx.lineTo(495, 245);
-	ctx.lineTo(495, 255);
-	ctx.lineTo(500, 250);
-	ctx.fillStyle = "black";
-	ctx.fill();
-   	 ctx.stroke();
-	ctx.closePath();
-
-	ctx.font = "18px Arial";
-	ctx.fillText("y",234,12);
-	ctx.fillText("x",490,268);
-	ctx.fillText("0",454,245);
-
-
-	ctx.moveTo(250,250);
-	ctx.arc(250,250,200,0,Math.PI*2,true);
-	ctx.stroke();
-
-	x1 = (1 / (1 + Math.tan(degToRad(angle))**2))**0.5;
-	x2 = -1 * (1 / (1 + Math.tan(degToRad(angle))**2))**0.5;
-	y1 = (1-x1**2)**0.5;
-	y2 = -1*(1-x2**2)**0.5;
-	ctx.beginPath();
-	if (angle <= 90){
-		ctx.arc(250+x1*200,250+y2*200,5,0,Math.PI*2,true);}
-	else if(angle <= 180){
-		ctx.arc(250+x2*200,250+y2*200,5,0,Math.PI*2,true);}
-	else if(angle <= 270){
-		ctx.arc(250+x2*200,250+y1*200,5,0,Math.PI*2,true);}
-	else if(angle <= 360){
-		ctx.arc(250+x1*200,250+y1*200,5,0,Math.PI*2,true);}
-	ctx.fillStyle = "red";
-	ctx.fill()
-	ctx.stroke();}
-
-function calc(){
-    x = Number(document.getElementById('up').value);
-    y = Number(document.getElementById('down').value);
-    if (y != 0){
-    angle = ((180 / y) * x) % 360
-    document.getElementById('ang1').innerHTML = angle;
-    if (angle >= 0){
-        draw(angle);
-        document.getElementById('ang2').innerHTML = angle - 360;}
-    else{
-        draw(360 + angle);
-        document.getElementById('ang2').innerHTML = angle + 360;}
-    }
-    else{
-        document.getElementById('ang1').innerHTML = "-";
-        document.getElementById('ang2').innerHTML = "-";
-        draw(1/0);
+    function degToRad(deg) {
+        return deg / 180 * Math.PI;
     }
 
-}
-draw(1/0);
+    function clear_screen() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function draw_axes() {
+        ctx.beginPath();
+        ctx.moveTo(250, 500);
+        ctx.lineTo(250, 0);
+        ctx.stroke();
+        ctx.lineTo(245, 5);
+        ctx.lineTo(255, 5);
+        ctx.lineTo(250, 0);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.moveTo(0, 250);
+        ctx.lineTo(500, 250);
+        ctx.stroke();
+        ctx.lineTo(495, 245);
+        ctx.lineTo(495, 255);
+        ctx.lineTo(500, 250);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.font = "18px Arial";
+        ctx.fillText("y", 234, 12);
+        ctx.fillText("x", 490, 268);
+        ctx.fillText("0", 454, 245);
+
+
+        ctx.moveTo(250, 250);
+        ctx.arc(250, 250, 200, 0, Math.PI * 2, true);
+        ctx.stroke();
+    }
+
+    function draw_point(x, y) {
+        ctx.beginPath();
+        ctx.arc(250 + x * 200, 250 + y * (-1) * 200, 5, 0, Math.PI * 2, true);
+        ctx.fillStyle = "red";
+        ctx.fill()
+        ctx.stroke();
+    }
+
+    function update_labels(angle, x, y) {
+        if (isNaN(angle)){
+            document.getElementById('ang1').innerHTML = "-";
+            document.getElementById('ang2').innerHTML = "-";
+            document.getElementById('x-cord').innerHTML = "-";
+            document.getElementById('y-cord').innerHTML = "-";
+        }
+        else{
+            document.getElementById('x-cord').innerHTML = Number(x.toFixed(4));
+            document.getElementById('y-cord').innerHTML = Number(y.toFixed(4));
+            document.getElementById('ang1').innerHTML = angle;
+            if (angle >= 0) {
+                document.getElementById('ang2').innerHTML = angle - 360;
+            } else {
+                document.getElementById('ang2').innerHTML = angle + 360;
+            }
+        }
+
+    }
+
+    function main(){
+        up = Number(document.getElementById('up').value);
+        down = Number(document.getElementById('down').value);
+
+        angle = Number((((180 / down) * up) % 360).toFixed(4));
+
+        p_x = Math.cos(degToRad(angle));
+        p_y = Math.sin(degToRad(angle));
+        update_labels(angle, p_x, p_y);
+
+        clear_screen();
+        draw_axes();
+
+        if (!isNaN(angle)){
+            draw_point(p_x, p_y);
+        }
+
+    }
+    draw_axes();
 </script>
 </body>
 </html>
