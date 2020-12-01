@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>BETA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="width: 100%; margin: 0%;">
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">π fraction</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">О проекте</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.donationalerts.com/r/geekmihalich">Помочь проекту</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<table style=" display:flex; justify-content: center; margin-top: 5px;">
+    <tr>
+        <th style="display: flex; justify-content: center;">
+            <canvas id="canvas" width="500" height="500">
+                Этот элемент не поддерживается.
+            </canvas>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">t = </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Формула" id="formula" onchange="main_formula()">
+            </div>
+        </th>
+    </tr>
+</table>
+<script src="script.js"></script>
+<script>
+    var pi = 180;
+    function main_formula(){
+        clear_screen();
+        draw_axes();
+        n = 0;
+        let last_values = [];
+        formula_text = document.getElementById('formula').value;
+        while (n < 999) {
+            value = eval(formula_text) % 360;
+            console.log(last_values);
+            if (!isNaN(value)){
+                if (last_values.indexOf(value) != -1){
+                    break;
+                }
+                else{
+                    last_values.push(value);
+                }
+                p_x = Math.cos(degToRad(value));
+                p_y = Math.sin(degToRad(value));
+                draw_point(p_x, p_y);
+                n = n + 1;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
