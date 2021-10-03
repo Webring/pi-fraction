@@ -1,92 +1,112 @@
-<!doctype html>
-<html>
-<head>
-    <title>PI fraction 2.1</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body style="width: 100%; margin: 0%;">
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/libraries/MathQuill/mathquill.css">
+        <title>Unit circle</title>
+    </head>
+    <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">π fraction</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">О проекте</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.donationalerts.com/r/geekmihalich">Помочь проекту</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Unit circle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-<table style=" display:flex; justify-content: center; margin-top: 5px;">
-    <tr>
-        <th style="display: flex; justify-content: center;">
-            <canvas id="canvas" width="500" height="500">
-                Этот элемент не поддерживается.
-            </canvas>
-        </th>
-    </tr>
-    <tr>
-        <th>
-            <table class="param_table">
-                <tr>
-                    <th>Угол: </th>
-                    <th><span id="ang1">-</span></th>
-                    <th>(</th>
-                    <th><span id="ang2">-</span></th>
-                    <th>)°</th>
-                </tr>
-            </table>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/formula.html">Точки по формуле [Beta]</a>
+                    </li>
 
-            <table class="param_table">
-                <tr>
-                    <th>Координаты: (</th>
-                    <th><span id="x-cord" class="fraction">-</span></th>
-                    <th>; </th>
-                    <th><span id="y-cord" class="fraction">-</span></th>
-                    <th>)</th>
-                </tr>
-            </table>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Дополнительно
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/features.html">Возможности проекта</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/about.html">О проекте</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/support.html">Поддержать проект</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
-            <div class="input-group mb-1">
-                <input type="number" class="form-control" placeholder="Числитель дроби" id="up" onkeyup="main()"
-                       onchange="main()">
-                <div class="input-group-append">
-                    <span class="input-group-text">π</span>
+            </div>
+        </nav>
+
+        <div id="content">
+            <div id="canvas_input_group">
+                <canvas id="canvas"></canvas>
+                <div id="input_group"><div class="input-group">
+                    <input type="number" class="form-control" id="numerator" placeholder="Числитель" step="1" onchange="update()" onkeyup="update()">
+                    <div class="input-group-append">
+                        <div class="input-group-text">π</div>
+                    </div>
+                </div>
+                <input type="number" class="form-control" id="denominator" placeholder="Знаменатель" step="1" onchange="update()" onkeyup="update()">
+            </div>
+                </div>
+
+            <div id="info_block">
+                <div>
+                    <span>Угол:</span>
+                    <abbr id="angle_indicator">-</abbr>°
+                </div>
+                <div>
+                    <span>Упрощенный угол:</span>
+                    <abbr id="simplified_angle_indicator">-</abbr>° 
+                    (<abbr id="reverse_simplified_angle_indicator">-</abbr>°)
+                </div>
+                <div>
+                    <span>Координаты:</span> (<abbr id="x_coord_indicator">-</abbr>; <abbr id="y_coord_indicator">-</abbr>)
+                </div>
+                <div>Координатная четверть:
+                    <span id="coordinate_quarter_indicator">-</span>
+                </div>
+                <div>
+                    <span>sin:</span>
+                    <abbr id="sine_indicator">-</ф>
+                </div>
+                <div>
+                    <span>cos:</span>
+                    <abbr id="cosine_indicator">-</ф>                  
+                </div>
+                <div>
+                    <span>tg:</span>
+                    <abbr id="tangent_indicator">-</abbr>
+                </div>
+                <div>
+                    <span>ctg:</span>
+                    <abbr id="cotangent_indicator">
+             </abbr>
                 </div>
             </div>
-            <div class="input-group mb-3">
-                <input type="number" class="form-control" placeholder="Знаменатель дроби" id="down" onkeyup="main()"
-                       onchange="main()">
-            </div>
+        </div>
 
-        </th>
-    </tr>
-</table>
 
-<script src="script.js"></script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ 
+</div>
 
-    ym(69688201, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true
-    });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/69688201" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-</body>
-</html>
+<script src="/js/cookie.js"></script>
+<script src="/js/functions.js"></script>
+<script src="/js/circle.js"></script>
+<script src="/libraries/jquery-3.6.0.min.js"></script>
+<script src="/libraries/MathQuill/mathquill.js"></script>
+<script src="/libraries/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body></html>

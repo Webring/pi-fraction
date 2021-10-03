@@ -1,26 +1,100 @@
-<!doctype html>
-<html>
-<head>
-    <title>О сайте</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/articles.css">
+        <title>О проекте | Unit circle</title>
+    </head>
+    <body>
 
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">π fraction</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="about.html">О проекте</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.donationalerts.com/r/geekmihalich">Помочь проекту</a>
-            </li>
-        </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Unit circle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/formula.html">Точки по формуле [Beta]</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Дополнительно
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/features.html">Возможности проекта</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/about.html">О проекте</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/support.html">Поддержать проект</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+<div id="content">
+    <img src="/img/history/header.png" alt="Единичная окружность" class="centered_image image_resize">
+    <div class="info_block"><h2>О проекте:</h2>
+    <div>
+        Данный проект был создан для помощи школьникам в построении точек на единичной окружности. Автор проекта: <a href="https://t.me/webringoff" target="_blank">@Webringoff</a>
+    </div></div>
+    
+    <div class="info_block"><h2>Что умеет сайт?</h2>
+    <div>
+        Подробней о том, какие возможности имеет сайт можно прочитать в <a href="/features.html">специальном разделе</a>
+    </div></div>
+    
+    <div class="info_block">
+        <h2>История проекта:</h2>
+        <div class="version"><h5>Первая версия</h5>
+            <img src="/img/history/ver1.0.png" alt="Версия 1.0">
+            <div>Все начилось 12 ноября 2020 года. Первая версия не предназначалась для широкого круга лиц. Скорее была просто экспериментом, написанным за 10минут. Она не была размещена на хостинге, чтобы ей воспользоваться нужно было вставить HTML код прямо в строку браузера. </div>
+            </div>
+            
+        
+        <div class="version">
+            <h5>
+                Pi Fraction 2.0
+            </h5>
+            <div>
+                Вторая версия появилась 13 ноября. Проект полностью преобразился, и принял привычную форму. Теперь на сайте появилась визуальное отображение окружности, проект стал доступен всем желающим и получил название Pi Fraction.
+            </div>
+        </div>
+        
+        <div class="version">
+            <h5>Pi fraction 2.1</h5>
+            <img src="/img/history/ver2.1.png" alt="Версия 2.1" class="centered_image image_resize">
+            <div>
+                На сайте появилось отображение обыкновенных дробей в частных случаях. 
+            </div>
+        </div>
+        <div class="version">
+            <h5>Unit circle 3.0 (последняя версия)</h5>
+            <div>Глобальное обновление, полностью переработан код сайта. Изменино название. Добавлена дополнительная информация о точке, и страница для построения точек по формуле. Сайт адаптирован под мобильные устройства.</div>
+        </div>
+    
     </div>
-</nav>
+</div>
 
-Сайт сделан учеником 10 Класса, буду рад, если поддержите проект.
+ 
+</div>
 
-</body>
-</html>
+<script src="/libraries/jquery-3.6.0.min.js"></script>
+<script src="/libraries/bootstrap/bootstrap.bundle.min.js"></script>
+
+
+</body></html>

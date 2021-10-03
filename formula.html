@@ -1,78 +1,116 @@
-<!doctype html>
-<html>
-<head>
-    <title>BETA</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body style="width: 100%; margin: 0%;">
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/libraries/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="/css/formula.css" />
+		<title>Серия решений | Unit circle</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/">Unit circle</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">π fraction</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">О проекте</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.donationalerts.com/r/geekmihalich">Помочь проекту</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/formula.html">Точки по формуле [Beta]</a>
+					</li>
 
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="#"
+							id="navbarDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-expanded="false"
+						>
+							Дополнительно
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="/features.html">Возможности проекта</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/about.html">О проекте</a>
+							</li>
+							<li><hr class="dropdown-divider" /></li>
+							<li>
+								<a class="dropdown-item" href="/support.html">Поддержать проект</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-<table style=" display:flex; justify-content: center; margin-top: 5px;">
-    <tr>
-        <th style="display: flex; justify-content: center;">
-            <canvas id="canvas" width="500" height="500">
-                Этот элемент не поддерживается.
-            </canvas>
-        </th>
-    </tr>
-    <tr>
-        <th>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">t = </span>
-                </div>
-                <input type="text" class="form-control" placeholder="Формула" id="formula" onchange="main_formula()">
-            </div>
-        </th>
-    </tr>
-</table>
-<script src="script.js"></script>
-<script>
-    var pi = 180;
-    function main_formula(){
-        clear_screen();
-        draw_axes();
-        n = 0;
-        let last_values = [];
-        formula_text = document.getElementById('formula').value;
-        while (n < 999) {
-            value = eval(formula_text) % 360;
-            console.log(last_values);
-            if (!isNaN(value)){
-                if (last_values.indexOf(value) != -1){
-                    break;
-                }
-                else{
-                    last_values.push(value);
-                }
-                p_x = Math.cos(degToRad(value));
-                p_y = Math.sin(degToRad(value));
-                draw_point(p_x, p_y);
-                n = n + 1;
-            }
-        }
-    }
-</script>
+		<div id="content">
+			<div id="canvas_input_group">
+				<canvas id="canvas"></canvas>
+				<div id="input_group">
+					<div class="alert alert-danger" id="error" style="display: none;">В формуле допущена ошибка</div>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text">t =</div>
+						</div>
+						<input
+							type="text"
+							class="form-control"
+							id="formula"
+							placeholder="формула"
+							onchange="update_with_error_message()"
+							onkeyup="update()"
+						/>
+					</div>
+				</div>
+			</div>
 
-</body>
+			<div id="info_block">
+				<button data-toggle="collapse" data-target="#operations-list" class="btn btn-link">
+					Список доступных операций
+				</button>
+				<div id="operations-list" class="collapse"><div class="card card-body">
+					Вам доступны следующие операции:
+					<ul>
+						<li>Сложение - "+"</li>
+						<li>Вычитание - "-"</li>
+						<li>Умножение - "*"</li>
+						<li>Деление - "/"</li>
+						<li>Возведение в стпень - "^"</li>
+						<li>Синус от числа - "sin(x)"</li>
+						<li>Косинус от числа - "cos(x)"</li>
+						<li>Тангенс от числа - "tan(x)"</li>
+						<li>Котангенс от числа - "cot(x)"</li>
+						<li>Набор арк-функций - "asin(x)", "acos(x)", "atan(x)", "acot(x)"</li>
+					</ul>
+					B следующие переменные:
+					<ul>
+						<li>Число Пи - "pi"</li>
+						<li>Счётчк - "n"</li>
+					</ul>
+				</div></div>
+			</div>
+		</div>
+		<script src="/js/circle.js"></script>
+		<script src="/js/cookie.js"></script>
+		<script src="/js/functions.js"></script>
+		<script src="/libraries/jquery-3.6.0.min.js"></script>
+		<script src="/libraries/bootstrap/bootstrap.bundle.min.js"></script>
+		<script src="/libraries/math.js"></script>
+		<script src="/js/formula.js"></script>
+	</body>
 </html>

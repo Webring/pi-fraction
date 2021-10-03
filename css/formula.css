@@ -1,0 +1,32 @@
+#canvas {
+	width: 500px;
+}
+
+#content {
+	display: flex;
+}
+
+#canvas_input_group {
+	padding: 1em;
+}
+
+@media screen and (max-width: 900px) {
+    #canvas {
+        margin-top: 1em;
+		width: 100%;
+    }
+
+	#canvas_input_group {
+        display: flex;
+        flex-direction: column-reverse;
+	}
+
+	#content {
+		flex-direction: column;
+	}
+
+	#info_block {
+		padding: 0 0.75em 0.75em 0.75em;
+		font-size: 20px;
+	}
+}
