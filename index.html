@@ -1,127 +1,166 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/libraries/MathQuill/mathquill.css">
-        <title>Unit circle</title>
-    </head>
-    <body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/libraries/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/libraries/MathQuill/mathquill.css" />
+		<title>Unit circle</title>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Unit circle</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						(m[i].a = m[i].a || []).push(arguments);
+					};
+				m[i].l = 1 * new Date();
+				(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a);
+			})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			ym(86347018, "init", {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+			});
+		</script>
+		<noscript
+			><div>
+				<img src="https://mc.yandex.ru/watch/86347018" style="position: absolute; left: -9999px" alt="" /></div
+		></noscript>
+		<!-- /Yandex.Metrika counter -->
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/">Unit circle</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/formula.html">Точки по формуле [Beta]</a>
-                    </li>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/formula.html">Точки по формуле [Beta]</a>
+					</li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                            Дополнительно
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="/features.html">Возможности проекта</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/about.html">О проекте</a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" href="/support.html">Поддержать проект</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="#"
+							id="navbarDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-expanded="false"
+						>
+							Дополнительно
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="/features.html">Возможности проекта</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/about.html">О проекте</a>
+							</li>
+							<li><hr class="dropdown-divider" /></li>
+							<li>
+								<a class="dropdown-item" href="/support.html">Поддержать проект</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-            </div>
-        </nav>
+		<div id="content">
+			<div id="canvas_input_group">
+				<canvas id="canvas"></canvas>
+				<div id="input_group">
+					<div class="input-group">
+						<input
+							type="number"
+							class="form-control"
+							id="numerator"
+							placeholder="Числитель"
+							step="1"
+							onchange="update()"
+							onkeyup="update()"
+						/>
+						<div class="input-group-append">
+							<div class="input-group-text">π</div>
+						</div>
+					</div>
+					<input
+						type="number"
+						class="form-control"
+						id="denominator"
+						placeholder="Знаменатель"
+						step="1"
+						onchange="update()"
+						onkeyup="update()"
+					/>
+				</div>
+			</div>
 
-        <div id="content">
-            <div id="canvas_input_group">
-                <canvas id="canvas"></canvas>
-                <div id="input_group"><div class="input-group">
-                    <input type="number" class="form-control" id="numerator" placeholder="Числитель" step="1" onchange="update()" onkeyup="update()">
-                    <div class="input-group-append">
-                        <div class="input-group-text">π</div>
-                    </div>
-                </div>
-                <input type="number" class="form-control" id="denominator" placeholder="Знаменатель" step="1" onchange="update()" onkeyup="update()">
-            </div>
-                </div>
+			<div id="info_block">
+				<div>
+					<span>Угол:</span>
+					<abbr id="angle_indicator">-</abbr>°
+				</div>
+				<div>
+					<span>Упрощенный угол:</span>
+					<abbr id="simplified_angle_indicator">-</abbr>° (<abbr id="reverse_simplified_angle_indicator"
+						>-</abbr
+					>°)
+				</div>
+				<div>
+					<span>Координаты:</span> (<abbr id="x_coord_indicator">-</abbr>;
+					<abbr id="y_coord_indicator">-</abbr>)
+				</div>
+				<div>
+					Координатная четверть:
+					<span id="coordinate_quarter_indicator">-</span>
+				</div>
+				<div>
+					<span>sin:</span>
+					<abbr id="sine_indicator">-</abbr>
+				</div>
+				<div>
+					<span>cos:</span>
+					<abbr id="cosine_indicator">-</abbr>
+				</div>
+				<div>
+					<span>tg:</span>
+					<abbr id="tangent_indicator">-</abbr>
+				</div>
+				<div>
+					<span>ctg:</span>
+					<abbr id="cotangent_indicator"> </abbr>
+				</div>
+			</div>
+		</div>
 
-            <div id="info_block">
-                <div>
-                    <span>Угол:</span>
-                    <abbr id="angle_indicator">-</abbr>°
-                </div>
-                <div>
-                    <span>Упрощенный угол:</span>
-                    <abbr id="simplified_angle_indicator">-</abbr>° 
-                    (<abbr id="reverse_simplified_angle_indicator">-</abbr>°)
-                </div>
-                <div>
-                    <span>Координаты:</span> (<abbr id="x_coord_indicator">-</abbr>; <abbr id="y_coord_indicator">-</abbr>)
-                </div>
-                <div>Координатная четверть:
-                    <span id="coordinate_quarter_indicator">-</span>
-                </div>
-                <div>
-                    <span>sin:</span>
-                    <abbr id="sine_indicator">-</ф>
-                </div>
-                <div>
-                    <span>cos:</span>
-                    <abbr id="cosine_indicator">-</ф>                  
-                </div>
-                <div>
-                    <span>tg:</span>
-                    <abbr id="tangent_indicator">-</abbr>
-                </div>
-                <div>
-                    <span>ctg:</span>
-                    <abbr id="cotangent_indicator">
-             </abbr>
-                </div>
-            </div>
-        </div>
-
-
- 
-</div>
-
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
- 
-    ym(69688201, "init", {
-         clickmap:true,
-         trackLinks:true,
-         accurateTrackBounce:true
-    });
- </script>
- <noscript><div><img src="https://mc.yandex.ru/watch/69688201" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
- <!-- /Yandex.Metrika counter -->
-
-<script src="/js/cookie.js"></script>
-<script src="/js/functions.js"></script>
-<script src="/js/circle.js"></script>
-<script src="/libraries/jquery-3.6.0.min.js"></script>
-<script src="/libraries/MathQuill/mathquill.js"></script>
-<script src="/libraries/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="/js/main.js"></script>
-
-
-</body></html>
+		<script src="/js/cookie.js"></script>
+		<script src="/js/functions.js"></script>
+		<script src="/js/circle.js"></script>
+		<script src="/libraries/jquery-3.6.0.min.js"></script>
+		<script src="/libraries/MathQuill/mathquill.js"></script>
+		<script src="/libraries/bootstrap/bootstrap.bundle.min.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>
