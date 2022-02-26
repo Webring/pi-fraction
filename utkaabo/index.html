@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" href="style.css" />
+		<meta name="robots" content="none" />
+		<title>Электронная визитка</title>
+	</head>
+	<body>
+		<div class="container">
+			<img class="profile-image" src="https://sun9-20.userapi.com/impg/6W7tmMsF65dW_lKHFxAt2XQV-DD6q-Oe3BJsYg/WaU9Nn4B4G0.jpg?size=2560x1707&quality=95&sign=20327fdf4fc222e0379b4cb66ceedc3d&type=album" alt="" />
+
+			<h1 class="name">
+				Михаил Васильев
+				<a id="description-open-button" onclick="open_description()">▼</a>
+			</h1>
+
+			<div id="description" class="closed">Я просто ОБОЖАЮ писать описания для профилей)</div>
+
+			<div class="icons-menu">
+				<a class="link-icon" href="https://vk.com/mihalich">
+					<img src="icons/vk.png" />
+					<span>VK</span>
+				</a>
+				<a class="link-icon" href="https://t.me/webringoff">
+					<img src="icons/telegram.png" />
+					<span>Telegram</span>
+				</a>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
