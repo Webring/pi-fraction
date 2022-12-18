@@ -1,5 +1,5 @@
 PEOPLE_LIST = ["Никита", "Михаил", "Кирилл", "Денис", "Егор"]
-START_DATE = "17.12.2022"
+START_DATE = "19.12.2022"
 START_POS = 0
 
 start_date = moment(START_DATE, "DD.MM.YYYY")
